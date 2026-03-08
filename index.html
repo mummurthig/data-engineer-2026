@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Engineering Career Roadmap 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --surface: #111827;
+      --surface2: #1a2332;
+      --accent: #00d4aa;
+      --accent2: #ff6b35;
+      --accent3: #7c3aed;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --border: rgba(0,212,170,0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .guide {
+      min-height: 100vh;
+      background: var(--bg);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* HEADER */
+    .header {
+      padding: 60px 20px 40px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .header-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .header-title span { color: var(--accent); }
+
+    .header-sub {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+
+    .salary-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(0,212,170,0.15), rgba(0,212,170,0.05));
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:.5; transform:scale(1.3); }
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(12px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--card-accent, var(--accent));
+    }
+
+    .section-card.orange { --card-accent: var(--accent2); }
+    .section-card.purple { --card-accent: var(--accent3); }
+    .section-card.blue   { --card-accent: #38bdf8; }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      background: rgba(0,212,170,0.1);
+    }
+
+    .section-card.orange .card-icon { background: rgba(255,107,53,0.1); }
+    .section-card.purple .card-icon { background: rgba(124,58,237,0.1); }
+    .section-card.blue   .card-icon { background: rgba(56,189,248,0.1); }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .card-description {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    /* SUBSECTIONS */
+    .subsection { margin-bottom: 24px; }
+
+    .subsection-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--card-accent, var(--accent));
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* SKILL CHIPS */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 5px;
+      border: 1px solid;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .chip:hover { transform: translateY(-2px); }
+
+    .chip-green  { color: var(--accent);  border-color: rgba(0,212,170,0.3);  background: rgba(0,212,170,0.07); }
+    .chip-orange { color: var(--accent2); border-color: rgba(255,107,53,0.3); background: rgba(255,107,53,0.07); }
+    .chip-purple { color: #a78bfa;        border-color: rgba(167,139,250,0.3);background: rgba(167,139,250,0.07);}
+    .chip-blue   { color: #38bdf8;        border-color: rgba(56,189,248,0.3); background: rgba(56,189,248,0.07); }
+    .chip-red    { color: #f87171;        border-color: rgba(248,113,113,0.3);background: rgba(248,113,113,0.07);}
+    .chip-yellow { color: #fbbf24;        border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.07); }
+
+    /* FOCUS AREAS */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .focus-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .focus-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .focus-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .focus-num {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .focus-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .focus-desc { font-size: 11px; color: var(--muted); line-height: 1.7; }
+
+    /* SALARY TABLE */
+    .table-wrap { overflow-x: auto; margin-bottom: 28px; }
+
+    .salary-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+
+    .salary-table th {
+      text-align: left;
+      padding: 10px 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-size: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .salary-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .salary-table tr:last-child td { border-bottom: none; }
+    .salary-table tbody tr:hover td { background: rgba(0,212,170,0.04); }
+
+    .high-pay { color: var(--accent); font-weight: 600; }
+    .purple-text { color: #a78bfa; }
+
+    /* BOOST ROWS */
+    .boost-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .boost-tag {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+
+    .salary-note {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .salary-note strong { color: var(--text); }
+
+    /* SUMMARY */
+    .summary-box {
+      background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(124,58,237,0.08));
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 8px;
+    }
+
+    .summary-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary-title span { color: var(--accent); }
+
+    .summary-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .summary-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .summary-arrow {
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .summary-item strong { color: #e2e8f0; }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    /* PANEL VISIBILITY */
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn 0.35s ease; }
+  </style>
+</head>
+<body>
+<div class="guide">
+  <div class="grid-bg"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">// Career Intelligence Report · 2026</div>
+    <h1 class="header-title">Data Engineering<br /><span>Career Roadmap</span></h1>
+    <p class="header-sub">A comprehensive skills analysis for professionals with 3.5 years of experience targeting roles above ₹25 LPA in the current Indian job market.</p>
+    <div class="salary-badge">
+      <div class="dot"></div>
+      TARGET: ₹25+ LPA &nbsp;·&nbsp; 36,000+ Open Positions in India (2026)
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="section-label">// Navigate Sections</div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('top')">Top Companies</button>
+      <button class="tab-btn" onclick="switchTab('mid')">Mid-Sized Companies</button>
+      <button class="tab-btn" onclick="switchTab('product')">Product Companies</button>
+      <button class="tab-btn" onclick="switchTab('focus')">Areas to Focus</button>
+      <button class="tab-btn" onclick="switchTab('salary')">Salary Insights</button>
+    </div>
+
+    <!-- ======================== TOP COMPANIES ======================== -->
+    <div id="panel-top" class="panel active">
+      <div class="section-card">
+        <div class="card-header">
+          <div class="card-icon">🏆</div>
+          <div>
+            <div class="card-title">Top Companies</div>
+            <div class="card-subtitle">FAANG, Unicorns &amp; Global Tech Giants</div>
+          </div>
+        </div>
+        <p class="card-description">Companies like Google, Amazon, Meta, Flipkart, Swiggy, Zomato, Meesho expect you to build at scale — petabytes of data, low-latency pipelines, and distributed systems mastery.</p>
+
+        <div class="subsection">
+          <div class="subsection-title">Core Programming Skills</div>
+          <div class="chips">
+            <span class="chip chip-green">Python (PySpark, Pandas, asyncio)</span>
+            <span class="chip chip-green">Advanced SQL (Window Functions, CTEs, Optimization)</span>
+            <span class="chip chip-blue">Scala (for Spark internals)</span>
+            <span class="chip chip-blue">Bash / Shell Scripting</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Processing &amp; Streaming</div>
+          <div class="chips">
+            <span class="chip chip-green">Apache Spark (Structured Streaming)</span>
+            <span class="chip chip-green">Apache Kafka (topics, partitions, consumer groups)</span>
+            <span class="chip chip-orange">Apache Flink (event-time, exactly-once semantics)</span>
+            <span class="chip chip-orange">Delta Lake / Apache Iceberg</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Cloud Platforms</div>
+          <div class="chips">
+            <span class="chip chip-blue">AWS (S3, Glue, EMR, Redshift, Lambda, Kinesis)</span>
+            <span class="chip chip-blue">GCP (BigQuery, Dataflow, Pub/Sub, Composer)</span>
+            <span class="chip chip-blue">Azure (Synapse, Data Factory, ADLS, Event Hubs)</span>
+            <span class="chip chip-purple">Databricks (Lakehouse Architecture)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Orchestration &amp; Transformation</div>
+          <div class="chips">
+            <span class="chip chip-green">Apache Airflow (DAGs, SLAs, backfills)</span>
+            <span class="chip chip-green">dbt (data build tool — models, tests, lineage)</span>
+            <span class="chip chip-yellow">Prefect / Dagster (modern alternatives)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Data Warehousing &amp; Storage</div>
+          <div class="chips">
+            <span class="chip chip-blue">Snowflake (clustering, time travel, data sharing)</span>
+            <span class="chip chip-blue">BigQuery (partitioning, BI Engine, cost mgmt)</span>
+            <span class="chip chip-blue">Amazon Redshift</span>
+            <span class="chip chip-purple">PostgreSQL / MySQL (advanced tuning)</span>
+            <span class="chip chip-red">Cassandra / DynamoDB / MongoDB (NoSQL)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">DevOps &amp; Engineering Practices</div>
+          <div class="chips">
+            <span class="chip chip-orange">Docker &amp; Kubernetes</span>
+            <span class="chip chip-orange">CI/CD (GitHub Actions, Jenkins)</span>
+            <span class="chip chip-green">Git &amp; GitOps workflows</span>
+            <span class="chip chip-purple">Infrastructure as Code (Terraform)</span>
+            <span class="chip chip-yellow">Data Observability (Great Expectations, Soda)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Emerging / Differentiating Skills</div>
+          <div class="chips">
+            <span class="chip chip-purple">Data Governance &amp; Lineage (OpenMetadata, Amundsen)</span>
+            <span class="chip chip-red">Feature Stores (Feast, Tecton)</span>
+            <span class="chip chip-orange">LLM / AI pipeline integration</span>
+            <span class="chip chip-yellow">Data Contracts &amp; Schema Registry</span>
+            <span class="chip chip-blue">Reverse ETL (Census, Hightouch)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================== MID-SIZED COMPANIES ======================== -->
+    <div id="panel-mid" class="panel">
+      <div class="section-card orange">
+        <div class="card-header">
+          <div class="card-icon">🏢</div>
+          <div>
+            <div class="card-title">Mid-Sized Companies</div>
+            <div class="card-subtitle">Series B/C Startups, SaaS, Analytics Firms</div>
+          </div>
+        </div>
+        <p class="card-description">Mid-sized companies want generalist data engineers who can own pipelines end-to-end. Expect to work across the full Modern Data Stack — dbt, Airflow, Snowflake — with less infrastructure overhead.</p>
+
+        <div class="subsection">
+          <div class="subsection-title">Must-Have Technical Skills</div>
+          <div class="chips">
+            <span class="chip chip-green">Python (scripting, automation, APIs)</span>
+            <span class="chip chip-green">SQL (advanced queries, performance tuning)</span>
+            <span class="chip chip-green">ETL/ELT pipeline design &amp; maintenance</span>
+            <span class="chip chip-orange">Data modeling (Star/Snowflake schema, SCD)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Modern Data Stack</div>
+          <div class="chips">
+            <span class="chip chip-green">dbt (core transformations, tests, documentation)</span>
+            <span class="chip chip-green">Apache Airflow or Prefect (orchestration)</span>
+            <span class="chip chip-blue">Snowflake or BigQuery (data warehouse)</span>
+            <span class="chip chip-blue">Fivetran / Airbyte (managed ingestion)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Cloud &amp; Infrastructure</div>
+          <div class="chips">
+            <span class="chip chip-blue">AWS or Azure (one platform well)</span>
+            <span class="chip chip-blue">S3 / Blob Storage (data lake basics)</span>
+            <span class="chip chip-orange">Docker (containerization)</span>
+            <span class="chip chip-purple">Basic Terraform or CloudFormation</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Streaming &amp; Processing</div>
+          <div class="chips">
+            <span class="chip chip-orange">Apache Kafka (basics to intermediate)</span>
+            <span class="chip chip-orange">Spark or AWS Glue (batch processing)</span>
+            <span class="chip chip-blue">Amazon Kinesis or Pub/Sub</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Data Quality &amp; Governance</div>
+          <div class="chips">
+            <span class="chip chip-green">Great Expectations or dbt tests</span>
+            <span class="chip chip-yellow">Data lineage awareness</span>
+            <span class="chip chip-yellow">Logging &amp; alerting for pipelines</span>
+            <span class="chip chip-orange">SLA monitoring &amp; incident response</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Tools &amp; Collaboration</div>
+          <div class="chips">
+            <span class="chip chip-green">Git version control (branching, PRs)</span>
+            <span class="chip chip-purple">Looker / Power BI / Tableau (BI-aware)</span>
+            <span class="chip chip-blue">JIRA / Confluence (agile workflows)</span>
+            <span class="chip chip-green">REST APIs &amp; webhooks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================== PRODUCT COMPANIES ======================== -->
+    <div id="panel-product" class="panel">
+      <div class="section-card purple">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div>
+            <div class="card-title">Product Companies</div>
+            <div class="card-subtitle">B2B/B2C Product Firms, Fintech, Edtech, Healthtech</div>
+          </div>
+        </div>
+        <p class="card-description">Product companies in India (CRED, Razorpay, Zerodha, PhonePe, etc.) need engineers who understand real-time data, business impact, and can work tightly with product and analytics teams.</p>
+
+        <div class="subsection">
+          <div class="subsection-title">Core Engineering Foundation</div>
+          <div class="chips">
+            <span class="chip chip-green">Python (production-grade code)</span>
+            <span class="chip chip-green">Advanced SQL &amp; query optimization</span>
+            <span class="chip chip-green">Data pipeline design patterns</span>
+            <span class="chip chip-blue">REST APIs &amp; microservices awareness</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Real-Time Data Stack</div>
+          <div class="chips">
+            <span class="chip chip-orange">Kafka (event streaming, audit trails)</span>
+            <span class="chip chip-orange">Spark Streaming / Flink (real-time aggregations)</span>
+            <span class="chip chip-purple">ClickHouse (OLAP for product analytics)</span>
+            <span class="chip chip-red">Redis (caching, session data)</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Cloud &amp; Scalability</div>
+          <div class="chips">
+            <span class="chip chip-blue">AWS or GCP (deep expertise)</span>
+            <span class="chip chip-blue">Databricks or EMR (big data processing)</span>
+            <span class="chip chip-orange">Auto-scaling pipelines</span>
+            <span class="chip chip-yellow">Cost optimization mindset</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Analytics Engineering</div>
+          <div class="chips">
+            <span class="chip chip-green">dbt (ELT transformations)</span>
+            <span class="chip chip-blue">Snowflake / BigQuery</span>
+            <span class="chip chip-purple">Metrics layer (Cube.js, dbt Metrics)</span>
+            <span class="chip chip-orange">A/B test data pipelines</span>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title">Business Context Skills</div>
+          <div class="chips">
+            <span class="chip chip-yellow">Understanding funnel analytics</span>
+            <span class="chip chip-blue">User event tracking (Segment, Amplitude)</span>
+            <span class="chip chip-red">GDPR / data privacy compliance</span>
+            <span class="chip chip-green">Data product ownership mindset</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================== AREAS TO FOCUS ======================== -->
+    <div id="panel-focus" class="panel">
+      <div class="section-card blue">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div>
+            <div class="card-title">Areas to Focus</div>
+            <div class="card-subtitle">Upskill Roadmap to Cross ₹25 LPA</div>
+          </div>
+        </div>
+        <p class="card-description">Based on the 2026 job market, these are the highest-leverage areas to invest your learning time if you already have 3.5 years of experience.</p>
+
+        <div class="focus-grid">
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">01</div>
+              <div class="focus-title">Lakehouse Architecture</div>
+            </div>
+            <div class="focus-desc">Master Delta Lake and Apache Iceberg. Understand medallion architecture (Bronze/Silver/Gold). This is now standard at 70%+ of modern data companies. Databricks certification is highly valued.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">02</div>
+              <div class="focus-title">Streaming Mastery</div>
+            </div>
+            <div class="focus-desc">Go beyond basic Kafka. Learn event-time windowing, watermarking, exactly-once semantics, and Flink for stateful stream processing. Real-time skills command 20–30% salary premium.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">03</div>
+              <div class="focus-title">dbt (Data Build Tool)</div>
+            </div>
+            <div class="focus-desc">dbt has become the SQL engineering standard. Master dbt Core: models, sources, tests, macros, snapshots (SCD Type 2), lineage graphs. Snowflake + dbt is the most common mid-market stack.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">04</div>
+              <div class="focus-title">Cloud Certification</div>
+            </div>
+            <div class="focus-desc">Aim for AWS Solutions Architect Associate or Databricks Certified Data Engineer Associate. Certifications signal credibility and often unlock ₹2–5 LPA additional negotiation leverage.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">05</div>
+              <div class="focus-title">DataOps &amp; Pipeline Reliability</div>
+            </div>
+            <div class="focus-desc">Treat pipelines as software: version control DAGs, write unit tests, set up SLA alerts, implement CI/CD for data. Data observability (Monte Carlo, Soda) is a growing interview topic.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">06</div>
+              <div class="focus-title">Data Modeling Depth</div>
+            </div>
+            <div class="focus-desc">Strong data modeling separates mid-level from senior engineers. Deep dive into dimensional modeling, data vault 2.0, schema evolution, and partitioning strategies for warehouse performance.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">07</div>
+              <div class="focus-title">AI/ML Pipeline Integration</div>
+            </div>
+            <div class="focus-desc">Know how to build feature engineering pipelines, connect to ML model training workflows, work with feature stores (Feast), and integrate LLM APIs into data pipelines — this is 2026's differentiator.</div>
+          </div>
+          <div class="focus-card">
+            <div class="focus-card-top">
+              <div class="focus-num">08</div>
+              <div class="focus-title">System Design for Data</div>
+            </div>
+            <div class="focus-desc">Practice designing end-to-end data architectures: lambda/kappa architecture, CDC pipelines, data mesh concepts, and cost-optimized warehouse designs. This is heavily tested in senior interviews.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================== SALARY INSIGHTS ======================== -->
+    <div id="panel-salary" class="panel">
+      <div class="section-card">
+        <div class="card-header">
+          <div class="card-icon">💰</div>
+          <div>
+            <div class="card-title">Salary Insights</div>
+            <div class="card-subtitle">2026 India Market Data</div>
+          </div>
+        </div>
+        <p class="card-description">Understanding the salary landscape helps you benchmark your worth and negotiate confidently. Here's what the current market looks like for data engineers in India.</p>
+
+        <div class="subsection-title">Salary by Company Type (3–5 Years Experience)</div>
+        <div class="table-wrap">
+          <table class="salary-table">
+            <thead>
+              <tr>
+                <th>Company Type</th>
+                <th>Experience</th>
+                <th>Base Pay</th>
+                <th>Total Comp (incl. ESOPs/Bonus)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>FAANG / Top Unicorns</td>
+                <td style="color:var(--muted)">3–5 yrs</td>
+                <td class="high-pay">₹25–45 LPA</td>
+                <td class="purple-text">₹30–60 LPA</td>
+              </tr>
+              <tr>
+                <td>Product Cos (Razorpay, CRED, Zepto)</td>
+                <td style="color:var(--muted)">3–5 yrs</td>
+                <td class="high-pay">₹20–35 LPA</td>
+                <td class="purple-text">₹25–45 LPA</td>
+              </tr>
+              <tr>
+                <td>Mid-sized Startups (Series B/C)</td>
+                <td style="color:var(--muted)">3–5 yrs</td>
+                <td class="high-pay">₹15–25 LPA</td>
+                <td class="purple-text">₹18–30 LPA</td>
+              </tr>
+              <tr>
+                <td>GCCs / MNCs (Bangalore/Hyderabad)</td>
+                <td style="color:var(--muted)">3–5 yrs</td>
+                <td class="high-pay">₹18–28 LPA</td>
+                <td class="purple-text">₹20–35 LPA</td>
+              </tr>
+              <tr>
+                <td>IT Services (TCS, Infosys, Wipro)</td>
+                <td style="color:var(--muted)">3–5 yrs</td>
+                <td class="high-pay">₹8–15 LPA</td>
+                <td class="purple-text">₹10–18 LPA</td>
+              </tr>
+              <tr>
+                <td>Fintech (Zerodha, PhonePe, Paytm)</td>
+                <td style="color:var(--muted)">3–5 yrs</td>
+                <td class="high-pay">₹20–32 LPA</td>
+                <td class="purple-text">₹25–40 LPA</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="subsection-title">Salary Boosters</div>
+        <div style="margin-bottom:24px;">
+          <div class="boost-row">
+            <span class="chip chip-green">Databricks Certified Data Engineer</span>
+            <span class="boost-tag">+₹3–5 LPA leverage</span>
+          </div>
+          <div class="boost-row">
+            <span class="chip chip-blue">AWS Solutions Architect Assoc.</span>
+            <span class="boost-tag">+₹2–4 LPA leverage</span>
+          </div>
+          <div class="boost-row">
+            <span class="chip chip-orange">Streaming (Kafka + Flink expertise)</span>
+            <span class="boost-tag">+20–30% premium</span>
+          </div>
+          <div class="boost-row">
+            <span class="chip chip-purple">Lakehouse / Delta Lake projects</span>
+            <span class="boost-tag">High demand skill</span>
+          </div>
+          <div class="boost-row">
+            <span class="chip chip-yellow">Open-source contributions</span>
+            <span class="boost-tag">Visibility + credibility</span>
+          </div>
+          <div class="boost-row">
+            <span class="chip chip-green">Bangalore / Hyderabad location</span>
+            <span class="boost-tag">10–25% city premium</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="salary-note">
+          📍 <strong>Location premium:</strong> Bangalore leads with the highest pay; Hyderabad, Pune follow. Chennai has strong demand in GCCs. Remote roles for global companies can push ₹30–50+ LPA for senior professionals.<br /><br />
+          📊 <strong>Sources:</strong> Glassdoor (March 2026, 19,000+ submissions), ERI SalaryExpert, AmbitionBox, HuntingCube Research (2026), industry analysis.
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================== SUMMARY ======================== -->
+    <div class="summary-box">
+      <div class="summary-title"><span>▶</span> Key Takeaways</div>
+      <ul class="summary-list">
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span><strong>Python + SQL + Cloud + dbt + Airflow</strong> is the non-negotiable base stack. If you don't have all five solid, start there first.</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span><strong>Streaming expertise (Kafka + Flink/Spark Streaming)</strong> is the single biggest differentiator for reaching ₹25+ LPA at product and top-tier companies.</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span><strong>Lakehouse architecture</strong> (Delta Lake + Databricks or Apache Iceberg) is now standard at scale. Getting certified on Databricks or AWS opens direct paths to ₹30–40 LPA roles.</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span><strong>System design for data</strong> is heavily tested in senior rounds. Practice designing pipelines with trade-offs, not just implementing them.</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span><strong>IT services roles (TCS, Infosys)</strong> rarely cross ₹18 LPA at this experience level. Target product companies, GCCs, and funded startups to hit ₹25+ LPA.</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span><strong>AI/ML pipeline integration</strong> (feature stores, LLM pipelines) is the 2026 differentiator. Start building at least one project that connects data engineering to a model or AI product.</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-arrow">→</span>
+          <span>Build a <strong>public GitHub portfolio</strong> with at least one end-to-end pipeline project (Kafka → Spark → Snowflake/BigQuery, orchestrated by Airflow) — it's the strongest signal for hiring managers.</span>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /guide -->
+
+<script>
+  const TABS = ['top', 'mid', 'product', 'focus', 'salary'];
+
+  function switchTab(id) {
+    // Update buttons
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', TABS[i] === id);
+    });
+    // Update panels
+    TABS.forEach(t => {
+      const el = document.getElementById('panel-' + t);
+      if (el) el.classList.toggle('active', t === id);
+    });
+  }
+</script>
+</body>
+</html>
